@@ -5,7 +5,7 @@ import createDebug from 'debug';
 const debug = createDebug('W6');
 
 dotenv.config();
-const PORT = process.env.PORT || 4444;
+const PORT = process.env.PORT || 6555;
 
 const server = http.createServer(app);
 

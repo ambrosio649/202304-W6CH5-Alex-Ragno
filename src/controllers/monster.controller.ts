@@ -15,8 +15,8 @@ export class MonsterController {
     res.send(await this.repo.readAll());
   }
 
-  getById(req: Request, res: Response) {
-    res.send('Hello number: ' + req.params.id);
+  async getById(req: Request, res: Response) {
+    res.send(await this.repo.readById(req.params.id));
   }
 
   post(req: Request, res: Response) {

@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import createDebug from 'debug';
 const debug = createDebug('W6:SampleRepo');
 
-type User = {
+type Monster = {
   id: string;
   name: string;
 };
@@ -16,6 +16,12 @@ export class MonsterRepo {
 
   async readAll() {
     const stringData = await fs.readFile(file, { encoding: 'utf-8' });
-    return JSON.parse(stringData) as User[];
+    return JSON.parse(stringData) as Monster[];
+  }
+
+  async readById(id: string) {
+    const stringData = await fs.readFile(file, { encoding: 'utf-8' });
+    const monsterData = JSON.parse(stringData) as Monster[];
+    return monsterData.find((item) => item.id === id);
   }
 }
