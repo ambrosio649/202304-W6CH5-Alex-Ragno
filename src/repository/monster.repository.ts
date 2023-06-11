@@ -24,4 +24,14 @@ export class MonsterRepo {
     const monsterData = JSON.parse(stringData) as Monster[];
     return monsterData.find((item) => item.id === id);
   }
+
+  async addMonster(monster: Monster) {
+    const stringData = await fs.readFile(file, { encoding: 'utf-8' });
+    const monsterData = JSON.parse(stringData) as Monster[];
+    monster.id = monsterData[monsterData.length - 1].id + 1;
+    const newMonsterList = JSON.stringify([...monsterData, monster]);
+    await fs.writeFile(file, newMonsterList, {
+      encoding: 'utf-8',
+    });
+  }
 }
