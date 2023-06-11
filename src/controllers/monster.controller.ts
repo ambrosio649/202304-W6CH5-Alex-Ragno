@@ -24,8 +24,9 @@ export class MonsterController {
     res.send('New monster has added!');
   }
 
-  patch(req: Request, res: Response) {
-    res.send('Patch Sample!: ' + req.body.user);
+  async patch(req: Request, res: Response) {
+    await this.repo.update(req.params.id, req.body);
+    res.send('The monster has been modified');
   }
 
   deleteById(req: Request, res: Response) {
