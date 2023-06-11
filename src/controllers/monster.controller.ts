@@ -19,8 +19,9 @@ export class MonsterController {
     res.send(await this.repo.readById(req.params.id));
   }
 
-  post(req: Request, res: Response) {
-    res.send('Post Sample!: ' + req.body.user);
+  async post(req: Request, res: Response) {
+    await this.repo.addMonster(req.body);
+    res.send('New monster has added!');
   }
 
   patch(req: Request, res: Response) {
