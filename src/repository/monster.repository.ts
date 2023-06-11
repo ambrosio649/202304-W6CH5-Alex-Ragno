@@ -34,4 +34,14 @@ export class MonsterRepo {
       encoding: 'utf-8',
     });
   }
+
+  async update(id: string, newMonsterData: Monster) {
+    const stringData = await fs.readFile(file, { encoding: 'utf-8' });
+    const monsterData = JSON.parse(stringData) as Monster[];
+    const updatedMonsterList = monsterData.map((item) =>
+      item.id === id ? { ...item, ...newMonsterData } : item
+    );
+    const updatedFile = JSON.stringify(updatedMonsterList);
+    await fs.writeFile(file, updatedFile, { encoding: 'utf-8' });
+  }
 }
